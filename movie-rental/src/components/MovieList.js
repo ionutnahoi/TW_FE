@@ -8,7 +8,7 @@ export const MovieList = (props) => {
     return (
         <div className={classes.movieList} >
             {props.movies && props.movies
-            .filter((movie) => {return props.filter?.search ? movie.info.title.toLowerCase().includes(props.filter.search.toLowerCase()) || movie.info.author.toLowerCase().includes(props.filter.search.toLowerCase()) : true}) 
+            .filter((movie) => {return props.filter?.search ? movie.info.title.toLowerCase().includes(props.filter.search.toLowerCase()) || movie.info.genre.toLowerCase().includes(props.filter.search.toLowerCase()) : true}) 
             .filter((movie) => {return props.filter?.onlyAvailable ? movie.available===true : true})
             .sort((a, b) => (a.available < b.available) ? 1 : -1)
             .map((movie) =>

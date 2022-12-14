@@ -33,7 +33,7 @@ export const MovieCard = (props) => {
             {props.movie.info.title}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            {props.movie.info.author}
+            {props.movie.info.genre}
           </Typography>
           {props.movie.returnDate && <Typography variant="subtitle2" color="text.secondary">
             {props.movie.returnDate}<br />

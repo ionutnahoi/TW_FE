@@ -22,7 +22,7 @@ const style = {
 
 export const AddMoviePopup = (props) => {
     const [open, setOpen] = useState(false);
-    const [movieDataInput, setMovieDataInput] = useState({ title: "", author: "" });
+    const [movieDataInput, setMovieDataInput] = useState({ title: "", genre: "" });
     const user = useSelector((state) => state.user.value)
 
 
@@ -30,9 +30,9 @@ export const AddMoviePopup = (props) => {
 
     const handleClick = async () => {
         const fetchData = async () => {
-            await addMovie({ id: user.id, movieInfo: { title: movieDataInput.title, author: movieDataInput.author } })
+            await addMovie({ id: user.id, movieInfo: { title: movieDataInput.title, genre: movieDataInput.genre } })
         }
-        if (movieDataInput.title !== "" && movieDataInput.author !== "") {
+        if (movieDataInput.title !== "" && movieDataInput.genre !== "") {
             await fetchData()
             handleClose()
         }
@@ -69,12 +69,12 @@ export const AddMoviePopup = (props) => {
                                 onChange={e => setMovieDataInput({ ...movieDataInput, title: e.target.value })}
                             />
                             <TextField
-                                id="authorField"
-                                label="Author"
+                                id="genreField"
+                                label="Genre"
                                 type="text"
-                                value={movieDataInput.author}
+                                value={movieDataInput.genre}
                                 sx={{width: "300px", marginTop: "20px"}}
-                                onChange={e => setMovieDataInput({ ...movieDataInput, author: e.target.value })}
+                                onChange={e => setMovieDataInput({ ...movieDataInput, genre: e.target.value })}
                             />
                             <Button sx={{marginTop: "20px"}} variant="outlined" onClick={handleClick}>Add Movie</Button>
                         </Box>

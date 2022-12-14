@@ -6,15 +6,11 @@ import { makeStyles } from '@mui/styles'
 import { getAllMovieInfo } from '../../services/movieInfoService'
 import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
-import { RentWaitPopup } from '../../features/RentWaitPopup';
 
 export const Home = () => {
   const [movies, setMovies] = useState(null);
   const [filter, setFilter] = useState({ search: "", onlyAvailable: null });
   const classes = useStyle()
-
-  const [openRentWaitPopup, setOpenRentWaitPopup] = useState(false)
-  const [movie, setMovie] = useState(null)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -23,16 +19,8 @@ export const Home = () => {
 
     fetchData()
 
-  }, [openRentWaitPopup])
+  }, [])
 
-  const handleAction = (open, movie) => {
-    setOpenRentWaitPopup(open)
-    setMovie(movie)
-  }
-
-  const renderExtendRentPopup = () => {
-    return <RentWaitPopup open={openRentWaitPopup} movie={movie} action={handleAction} />
-  }
 
   return (
     <div>
@@ -45,8 +33,7 @@ export const Home = () => {
         />
         <FormControlLabel sx={{ marginLeft: "10px" }} control={<Checkbox size="large" onChange={e => { setFilter({ ...filter, onlyAvailable: e.target.checked }) }} />} label="Show only Available" />
       </div>
-      <MovieList movies={movies} action={handleAction} filter={filter}></MovieList>
-      {renderExtendRentPopup()}
+      <MovieList movies={movies}  filter={filter}></MovieList>
     </div>
   )
 }
