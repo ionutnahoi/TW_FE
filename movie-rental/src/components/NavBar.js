@@ -17,7 +17,7 @@ import { deauthenticate } from '../state/slices/jwtSlice';
 
 
 
-const settings = ['My movies', 'Logout'];
+const settings = ['My movies', 'My rented', 'My waiting list', 'Logout'];
 
 export const NavBar = (props) => {
   const [anchorElUser, setAnchorElUser] = useState(null);
@@ -35,6 +35,12 @@ export const NavBar = (props) => {
   const handleCloseUserMenu = (event) => {
     if (event === "My movies") {
       navigate('/myMovies');
+    }
+    if (event === "My rented") {
+      navigate('/myRented');
+    }
+    if (event === "My waiting list") {
+      navigate('/myWaitingList');
     }
     if (event === "Logout") {
       dispatch(logout())
